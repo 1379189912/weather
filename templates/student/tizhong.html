@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <style>
+        body{
+            background-image: url({% static "image/a2.bmp" %});
+        }
+        .head {
+            font-size: 30px;
+            font-family: 宋体;
+            width: 500px;
+            height: 30px;
+            background-color: green;
+        }
+
+        .body {
+            width: 500px;
+            background-color: navajowhite;
+
+        }
+
+        .a1 {
+            width: 120px;
+            height: 30px;
+            font-size: 20px;
+
+        }
+
+        .a2 {
+            width: 350px;
+            height: 35px;
+            font-size: 30px;
+        }
+        .a3{
+            font-size: 30px;
+            display: flex;
+        }
+        .a5{
+            font-size: 30px;
+            display: flex;
+        }
+        .a7{
+            font-size: 33px;
+            display: flex;
+        }
+        .a9{
+            margin-left: 60px;
+        }
+        #a1{
+            background-color: #009789;
+            width: 500px;
+        }
+        .content{
+{#            padding: 0;#}
+            width: 500px;
+            height: 500px;
+            margin: 300px auto ;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container" >
+    <div class="content" >
+        <div class="head">
+            免费计算你的身体质量指数
+        </div>
+        <form action="/encode/tizhong/" method="post">
+            {% csrf_token %}
+            <div id="a1">你的bmi值:<a>{{ bmi }}</a>身体状态:<a>{{ bme }}</a></div>
+
+            <div class="body" >
+                <div class="a1">度量单位：</div>
+                <div class="a2">
+                    <input type="radio" name="f_units" value="units_is" id="f_units_is" checked=""
+                           onclick="Unit('单位: 厘米 cm', '单位: 千克 kg');"> <label for="f_units_is">公制</label> &nbsp; <input
+                        type="radio" name="f_units" value="units_us" id="f_units_us"
+                        onclick="Unit('单位: 英寸 in', '单位: 磅 lb');"> <label for="f_units_us">英制</label>
+                </div>
+                <div class="a3" >我的身高: <span>&nbsp</span>
+                    <div class="a4">
+                        <div class="小a4">
+                            <input type="float" size="6" name="shengao">
+                            <span id="b1">单位：厘米</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="a5">我的体重:<div class="a6"><div class="小a6">
+                    <input type="text" size="6" name="tizhong">
+                    <span id="b1">单位：kg</span></div>
+
+                </div>
+                </div>
+                <div class="a7">BMI标准:<div class="a8">
+                    <select class="小a8">
+                        <option value="">国际标准</option>
+                        <option value="">中国</option>
+                        <option value="">美国</option>
+                    </select>
+                </div></div>
+
+                <div class="a9">
+                    <button type="submit">计算</button>
+
+                </div>
+
+            </div>
+
+    </div>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        {% load staticfiles %}
+        body{
+            background-image: url({% static "image/解密背景.jpg" %});
+        }
+        textarea{
+            background-color: #009789;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+ <form action="/encode/yasuo/" method="post">
+
+    {% csrf_token %}
+    <textarea name="input" cols="100" rows="10"></textarea>
+    <div style="margin: 0 auto;width: 100px">
+        <button class="a1" type="submit">压缩</button>
+    </div>
+     <textarea cols="100" rows="10">{{ output }}</textarea>
+ </form>
+
+</body>
+</html>

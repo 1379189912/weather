@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+       <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <style>
+        body {
+            background-image: url({% static "image/aaa.jpg" %});
+
+        }
+
+        .header {
+            text-align: center;
+            font-size: 40px;
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        }
+        .c{
+            width: 300px;
+            height: 300px;
+            font-size: 40px;
+{#            background-color: palegreen;#}
+            font-family:arial, sans-serif;
+            color: wheat;
+        }
+        .bge{
+{#            font-size: 35px;#}
+{#            border: solid 2px red;#}
+            width: 200px;
+            height: 300px;
+
+        }
+
+        #a{
+            display:flex ;
+            list-style: none;
+            margin-top: 150px;
+        }
+        .a1{
+            list-style: none;
+            font-family:arial, sans-serif;
+
+        }
+
+        .b1{
+            display: flex;
+            border: solid 2px blueviolet;
+            width: 200px;
+            height: 200px;
+            background-color: cornflowerblue;
+            margin-left: 200px;
+
+
+        }
+        #m{
+            list-style: none;
+
+
+
+        }
+        #b{
+            display: flex;
+        }
+        .age{
+            margin-top: 100px;
+            font-size: 35px;
+            color:#009789;
+            font-family: "PingFang SC","Microsoft YaHei",Simsun,Helvetica,Arial,sans-serif;
+        }
+        .age2{
+            font-size: 30px;
+            color: violet;
+
+
+        }
+        .bge{
+            background-color: skyblue;
+            margin-left: 50px;
+        }
+        .body1{
+            width: 300px;
+            height: 400px;
+        }
+        .w{
+            display: flex;
+        }
+        #main{
+            margin-left: 1250px;
+        }
+        .r{width: 100px;
+            height: 100px;
+        }
+        .o{
+            width: 50px;
+            height: 50px;
+        }
+        .c3{
+            margin-left: 450px;
+            font-size: 55px;
+{#            margin-left: 450px;#}
+            color: cornflowerblue;
+
+        }
+        .c2{
+            font-size: 86px;
+            font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+            color: lightcoral;
+            margin-left: 250px;
+{#            margin: 220px;#}
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="head"><p class="header">山西-太原-文水-天气预报</p></div>
+        <div class="body"  >
+            <div class="w">
+
+
+            <div class="body1">
+                <div class="c">{{ city }}<br>{{ week }}<br>{{ date }}<br>{{ wea }}<br>
+
+                    <img src="/static/image/{{ wea }}.png" alt=""></div>
+{#                <div class="c1">{{ humidity }}</div>#}
+                <div class="c3">{{ air_level }}</div>
+                <div class="c2">{{ tem1 }}</div>
+
+            </div>
+            <div id="main" style="width: 600px;height:400px;"></div>
+                </div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                // 标题
+                title: {
+                    text: '未来一周气温变化'
+                },
+                // 不知道
+                tooltip: {
+                    trigger: 'axis'
+                },
+                // 提示线
+                legend: {
+                    data: ['最高气温', '最低气温']
+                },
+                // x轴
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                },
+                // y轴
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                },
+                // 图表中的线
+                series: [
+                    // 最高气温线
+                    {
+                        name: '最高气温',
+                        type: 'line',
+                        data: [11, 11, 15, 13, 12, 9, 10],
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    // 最低气温线
+                    {
+                        name: '最低气温',
+                        type: 'line',
+                        data: [1, -2, 2, 5, 3, 2, 0],
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    </div>
+看一眼都都想拥有的人要怎么做朋友
+
+                <div id="a">
+                    <div class="age">七天报道</div>
+                    <div class="d"></div>
+                         {% for i in day %}
+                   <div class="bge">
+                       <ul class="a1">
+                           <li>{{ i.week }}</li>
+                           <li>{{ i.date }}</li>
+                           <li>{{ i.wea }}</li>
+                       </ul>
+                       <img src="/static/image/{{ i.wea }}.png" alt="" class="r">
+                   </div>
+                    {% endfor %}
+                </div>
+                <div id="b">
+                    <div class="age2">小时报道</div>
+                        {% for t in day2 %}
+                        <div class="b1">
+                        <ul id="m">
+                        <li>{{ t.day }}</li>
+                        <li>{{ t.wea }}</li>
+                        <li>{{ t.tem }}</li>
+                        <li>{{ t.win }}</li>
+                        <li>{{ t.win_speed }}</li>
+                            </ul>
+                        <img src="/static/image/{{ t.wea }}.png" alt="" class="o">
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+
+
+        </div>
+
+
+
+
+</div>
+
+
+</body>
+</html>
+

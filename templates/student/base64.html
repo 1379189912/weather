@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编译解码器</title>
+    <style>
+    {% load staticfiles %}
+
+    body {
+            background-image: url({% static "image/a1.bmp" %});
+        }
+        .content{
+            font-size: 40px;
+        }
+        .head{
+            font-size:40px ;
+            margin-top: 150px;
+        }
+        .a1{
+            color: #009789;
+        }
+        .a2{
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div class="a1">
+        <form action="/encode/base_64/" method="post">
+            {% csrf_token %}
+            请输入要解码的文字：<input type="text" name="zhuan">
+            <button type="submit">转</button>
+            转二进制：<input type="text" value="{{ zhuan }}">
+            </div>
+        </form>
+        </div>
+    <div class="head">
+        <div class="a2">
+        <form action="/encode/base_642/" method="post">
+            {% csrf_token %}
+            二进制转汉字：<input type="text" name="jiema">
+            <button type="submit">解码</button>
+            转汉字：<input type="text" value="{{ jiema }}">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        {% load staticfiles %}
+        body {
+            background-image: url({% static "image/QQ.jpg" %});
+
+        }
+        .head{
+            font-size: 50px;
+            background-color:blue;
+            margin-left: 250px;
+            margin-top: 500px;
+        }
+        .container{
+            display: flex;
+
+
+        }
+        .s{
+            font-size: 100px;
+            color: gray;
+            margin-left: 350px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+
+    <div class="head">
+        <a href="/encode/hash/">哈希解密</a>
+    </div>
+    <div class="head">
+        <a href="/encode/base_64/">base64解密</a>
+    </div>
+    <div class="head">
+        <a href="/encode/tizhong/">BMI体重</a>
+    </div>
+    <div class="head">
+        <a href="/weather/tianqi">天气</a>
+    </div>
+</div>
+<div class="s">我是mc秦始皇，对象dj武媚娘</div>
+</body>
+</html>
